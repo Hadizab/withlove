@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WITH LOVE – A Collection of Poems by Hadiza Bagudu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #000;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Watermark hearts – only on main page */
+    body.show-watermark::before {
+      content: "❤ ❤ ❤";
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8rem;
+      color: rgba(255, 0, 0, 0.05);
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+      color: #b3003c;
+      margin: 0 0 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.1rem;
+      font-weight: normal;
+      text-align: center;
+      color: #444;
+      margin: 0 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 80px; /* extra bottom padding so footer doesn't overlap */
+      position: relative;
+      z-index: 1;
+    }
+
+    .poem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .poem-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(179, 0, 60, 0.15);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .poem-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(179, 0, 60, 0.25);
+    }
+
+    .poem-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .poem-card-title {
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-align: center;
+      color: #b3003c;
+    }
+
+    .poem-full {
+      display: none;
+      background: #fff;
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(179, 0, 60, 0.2);
+    }
+
+    .poem-full.active {
+      display: block;
+    }
+
+    .poem-full img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .poem-text {
+      line-height: 1.8;
+      white-space: pre-wrap;
+      margin: 20px 0;
+      font-size: 1.05rem;
+      color: #000;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .btn {
+      background: #b3003c;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #800029;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.85rem;
+      background: #f9f9f9;
+      border-top: 1px solid #eee;
+      color: #444;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .button-row {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body class="show-watermark">
+
+<div class="container">
+  <div id="poemList">
+    <h1>WITH LOVE</h1>
+    <h2>A Collection of Poems by Hadiza Bagudu</h2>
+    <div class="poem-grid">
+      <div class="poem-card" onclick="showPoem(0)">
+        <img src="https://i.pinimg.com/736x/b6/93/98/b693989e67d1c45da48e94fc02a6056f.jpg">
+        <div class="poem-card-title">RUMOR HAS IT</div>
+      </div>
+
+      <div class="poem-card" onclick="showPoem(1)">
+        <img src="https://i.pinimg.com/736x/64/dc/1c/64dc1c09118142c4a6064f2ffc8fe6f9.jpg">
+        <div class="poem-card-title">SOMEBODY IS GONNA CRY</div>
+      </div>
+
+      <div class="poem-card" onclick="showPoem(2)">
+        <img src="https://cdn.pixabay.com/photo/2017/02/21/09/34/mirror-2085193_1280.jpg">
+        <div class="poem-card-title">THE ONE</div>
+      </div>
+
+      <div class="poem-card" onclick="showPoem(3)">
+        <img src="https://i.pinimg.com/736x/6e/69/54/6e695424cf36ec4a4c0384b0c2c3e9d2.jpg">
+        <div class="poem-card-title">LOVE IS</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(4)">
+        <img src="https://i.pinimg.com/736x/d4/22/ca/d422ca566a594fcbc3f31a66dcc7762e.jpg">
+        <div class="poem-card-title">THE CRY OF A BROKEN HEART</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(5)">
+        <img src="https://i.pinimg.com/1200x/bb/66/d9/bb66d9d229fb73741e589e8cad5e613c.jpg">
+        <div class="poem-card-title">HIGH ON LOVE</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(6)">
+        <img src="https://cdn.pixabay.com/photo/2018/09/09/12/50/heart-3664496_1280.jpg">
+        <div class="poem-card-title">MY DARLING</div>
+      </div>
+<div class="poem-card" onclick="showPoem(7)">
+        <img src="https://i.pinimg.com/736x/31/ab/7b/31ab7be16c7dc7b447ac48efd27564e0.jpg">
+        <div class="poem-card-title">ONCE UPON A DREAM</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(8)">
+        <img src="https://i.pinimg.com/736x/83/9f/e5/839fe5898a678f91d4b5d87ade192785.jpg">
+        <div class="poem-card-title">LOVE MAKES ME FEEL THAT WAY (A SONG)</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(9)">
+        <img src="https://cdn.pixabay.com/photo/2014/10/08/16/38/heart-480367_1280.jpg">
+        <div class="poem-card-title">COME HOME</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(10)">
+        <img src="https://i.pinimg.com/1200x/ab/66/24/ab66240a6eaec3dc321d092a9143fbdc.jpg">
+        <div class="poem-card-title">BEAUTIFUL</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(11)">
+        <img src="https://cdn.pixabay.com/photo/2014/07/08/09/57/candle-386607_1280.jpg">
+        <div class="poem-card-title">SEARCHING</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(12)">
+        <img src="https://i.pinimg.com/736x/57/b9/87/57b9875c1892460de878760526d7625b.jpg">
+        <div class="poem-card-title">TA SAD LOVE SONG (Song)</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(13)">
+        <img src="https://i.pinimg.com/736x/02/7f/11/027f11a91a8b3f8a48e56dbc28ea5af3.jpg">
+        <div class="poem-card-title">ONLY YOU</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(14)">
+        <img src="https://i.pinimg.com/1200x/5e/2e/01/5e2e0164cdbbd606eb5328a33b3cba49.jpg">
+        <div class="poem-card-title">SECRET ADMIRER</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(15)">
+        <img src="https://i.pinimg.com/736x/bc/35/d9/bc35d9195748de43311e933dabcc1765.jpg">
+        <div class="poem-card-title">U</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(16)">
+        <img src="https://i.pinimg.com/736x/a3/b0/67/a3b067e4975439035824c8bbbf35b6e3.jpg">
+        <div class="poem-card-title">REGRETS</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(17)">
+        <img src="https://i.pinimg.com/736x/6f/42/03/6f4203d68ec968c5d66940cb33cf502a.jpg">
+        <div class="poem-card-title">A LOVE STORY</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(18)">
+        <img src="https://i.pinimg.com/1200x/0c/b4/c9/0cb4c91c773a5fb30cf3464669cea248.jpg">
+        <div class="poem-card-title">IMAGINE</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(19)">
+        <img src="https://i.pinimg.com/1200x/eb/1a/87/eb1a876c5f34914e4c73ac2a50cd224d.jpg">
+        <div class="poem-card-title">IN THE MIND OF A POET</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(20)">
+        <img src="https://i.pinimg.com/1200x/a1/e8/94/a1e8946b523d42c9964247c89d0b1276.jpg">
+        <div class="poem-card-title">FINDING GOD</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(21)">
+        <img src="https://i.pinimg.com/1200x/c3/8b/14/c38b14a462bad8a69e15c022d4bb8457.jpg">
+        <div class="poem-card-title">A NIGHT’S PRAYER</div>
+      </div>
+
+
+<div class="poem-card" onclick="showPoem(22)">
+        <img src="https://i.pinimg.com/1200x/cd/1d/0b/cd1d0b5dc83158fac1a3916f3286a3f2.jpg">
+        <div class="poem-card-title">VIRTUES</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(23)">
+        <img src="https://i.pinimg.com/1200x/49/c4/72/49c4727e3f3c82e538ba2e1d6829b52e.jpg">
+        <div class="poem-card-title">TAKE IT EASY</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(24)">
+        <img src="https://i.pinimg.com/1200x/da/3a/c2/da3ac2d61ee122ae8e801b7a83a4f3f0.jpg">
+        <div class="poem-card-title">SICK (HIV)</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(25)">
+        <img src="https://i.pinimg.com/originals/f1/4b/ae/f14bae2acea5b2ea082d4001cd47d43b.gif">
+        <div class="poem-card-title">ONCE UPON A STAR</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(26)">
+        <img src="https://i.pinimg.com/736x/b7/f0/92/b7f09244298db32f4ca2971987e31d9c.jpg">
+        <div class="poem-card-title">BLANK</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(27)">
+        <img src="https://i.pinimg.com/736x/6b/22/43/6b22435c980151b5cce85d02407848a6.jpg">
+        <div class="poem-card-title">HAPPINESS</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(28)">
+        <img src="https://i.pinimg.com/736x/8d/eb/42/8deb42b50f4383ea05e085fdfd1edfe6.jpg">
+        <div class="poem-card-title">AIMING HIGH</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(29)">
+        <img src="https://i.pinimg.com/736x/a4/c4/95/a4c4957ee201e5ef265699e31328588c.jpg">
+        <div class="poem-card-title">INVESTMENT</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(30)">
+        <img src="https://i.pinimg.com/1200x/8a/fd/02/8afd02ced98a0d76b34d526f4b8240be.jpg">
+        <div class="poem-card-title">IF SADNESS HAD A FACE</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(31)">
+        <img src="https://i.pinimg.com/736x/38/c0/5e/38c05ea896ad26a693d2b86b0287c02e.jpg">
+        <div class="poem-card-title">MR. JOHNS</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(32)">
+        <img src="https://i.pinimg.com/736x/c7/21/18/c72118415e458d7694630f27b55e8322.jpg">
+        <div class="poem-card-title">THE CAT AND THE MOUSE GAME</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(33)">
+        <img src="https://i.pinimg.com/736x/99/29/ca/9929ca989aa2eae0208dfee2cf294163.jpg">
+        <div class="poem-card-title">FLU SEASON</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(34)">
+        <img src="https://i.pinimg.com/736x/ac/52/83/ac528347885407473313a1488610d900.jpg">
+        <div class="poem-card-title">WHY I CRY</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(35)">
+        <img src="https://i.pinimg.com/1200x/33/2d/21/332d21242bbca9c947252b7a576b94ea.jpg">
+        <div class="poem-card-title">ME</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(36)">
+        <img src="https://i.pinimg.com/736x/51/58/6e/51586e9e61917625fcfdb470b2eb30cb.jpg">
+        <div class="poem-card-title">FOOL</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(37)">
+        <img src="https://i.pinimg.com/1200x/9b/6e/67/9b6e671c89d83231f344d463b447ce65.jpg">
+        <div class="poem-card-title">DESPAIR</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(38)">
+        <img src="https://i.pinimg.com/1200x/28/81/9e/28819e6b10b333ecd70ffb42a1b4561e.jpg">
+        <div class="poem-card-title">DAYS GONE BYE</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(39)">
+        <img src="https://i.pinimg.com/736x/1c/89/41/1c894153def48e559686ddee417df6b4.jpg">
+        <div class="poem-card-title">BACKSTAB</div>
+      </div>
+     
+<div class="poem-card" onclick="showPoem(40)">
+        <img src="https://i.pinimg.com/736x/d8/a3/b0/d8a3b01d2a8f7e5e8b9b8c639e46a3f4.jpg">
+        <div class="poem-card-title">SHOWDOWN</div>
+      </div>
+
+<div class="poem-card" onclick="showPoem(41)">
+        <img src="https://i.pinimg.com/1200x/8b/d7/60/8bd760fc3b68f993c4d6451c984264b3.jpg">
+        <div class="poem-card-title">I WISH</div>
+      </div>
+<div class="poem-card" onclick="showPoem(42)">
+        <img src="https://i.pinimg.com/736x/0b/e4/53/0be453109160a79dab2f9f2977d80589.jpg">
+        <div class="poem-card-title">THE PAIN OF BETRAYAL</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Poem Pages -->
+  <div id="poemContainer"></div>
+</div>
+
+<footer>
+  © 2008 Hadiza Bagudu
+</footer>
+
+<script>
+  const poems = [
+    {
+      title: "RUMOR HAS IT",
+      image: "https://i.pinimg.com/736x/b6/93/98/b693989e67d1c45da48e94fc02a6056f.jpg",
+      text: `Rumor has it,
+That you have got a thing for me.
+That you care.
+But we both know that,
+There is no smoke without fire.
+
+I know you watch me,
+Every time I walk by.
+Without looking,
+I can feel the smile.
+I look your way,
+And you tried to hide.
+
+From your blushing eyes,
+I know you are mine.
+Your deep brown eyes,
+And your dazzling white teeth.
+From your beautiful smile,
+That is just for me.
+
+I wonder if we can be,
+A perfect you and me.
+Let's write a love story,
+That will last for eternity.
+
+Rumor has it,
+That you have got a thing for me,
+That you care.
+But we both know that,
+There is no smoke without fire.
+
+Copyright © 2008 HADIZA BAGUDU
+`
+    },
+    {
+      title: "SOMEBODY IS GONNA CRY",
+      image: "https://i.pinimg.com/736x/64/dc/1c/64dc1c09118142c4a6064f2ffc8fe6f9.jpg",
+      text: `When the morning comes,
+And the love is gone.
+I see your face in the sky.
+I see the future of us,
+In the horizon.
+And I know somebody's gonna cry.
+
+As the love slowly fades,
+And I don't want to wait,
+Wallowing in this pain.
+Though it may sound cruel,
+When lovers sing the blues.
+But I know, somebody's gonna cry.
+
+Copyright © 2008 HADIZA BAGUDU`
+    },
+    {
+      title: "THE ONE",
+      image: "https://cdn.pixabay.com/photo/2017/02/21/09/34/mirror-2085193_1280.jpg",
+      text: `Are you the one?
+To whom I give my heart?
+
+You fit the perfect profile.
+That I cannot deny.
+
+Is it love at first sight?
+Oh, I hope I am right.
+
+Things have not been the same,
+Since the day we met.
+
+You have been the only thing on my mind,
+Morning, noon, and night.
+
+Do we have to play the game?
+Or will you just tell me your name?
+
+Would we be happy?
+Am I really that lucky?
+
+Copyright © 2008 HADIZA BAGUDU`
+    },
+    {
+      title: "LOVE IS…",
+      image: "https://i.pinimg.com/736x/6e/69/54/6e695424cf36ec4a4c0384b0c2c3e9d2.jpg",
+      text: `When you are still dancing, long,
+After the music stopped.
+
+When you speak with your eyes
+And understand with your heart.
+
+When in your mind, the world
+Is a perfect place and life is good.
+
+When you don't need to say
+Thank you or sorry.
+
+When you find sunshine in
+The clouds and comfort in the rain.
+
+When you hear each other's name in every
+Heartbeat, and say it with every breath.
+
+Copyright © 2008 HADIZA BAGUDU`
+    },
+{
+      title: "THE CRY OF A BROKEN HEART",
+      image: "https://i.pinimg.com/736x/d4/22/ca/d422ca566a594fcbc3f31a66dcc7762e.jpg",
+      text: `I have waited for you all my life,
+Now that you have come, it just doesn't feel right.
+
+They said that love is the best,
+Why does it feel like anything but the best?
+
+I was bitten by the love's serpent.
+And its venom is slowly killing me.
+
+Burning through my veins cruel,
+Melting each bone as it moves.
+
+I have swallowed the bitter fruit of love,
+And its poison is cutting my intestines up.
+
+Why does love bring tears to my eyes?
+Why does it make me want to end my life?
+
+Oh, love, why love? Why me?
+Why are you so unkind to me?
+
+Haven't you punished me enough?
+Isn't it time you left me alone?
+
+Copyright © 2008 HADIZA BAGUDU`
+    },
+{
+      title: "HIGH ON LOVE",
+      image: "https://i.pinimg.com/1200x/bb/66/d9/bb66d9d229fb73741e589e8cad5e613c.jpg",
+      text: `Your love is like a dove,
+Soaring high above,
+With such a powerful force,
+No one can alter its course.
+
+Copyright © 2008 HADIZA BAGUDU`
+    },
+{
+      title: "MY DARLING",
+      image: "https://cdn.pixabay.com/photo/2018/09/09/12/50/heart-3664496_1280.jpg",
+      text: `Tell me, whose heart is beating?
+Yours or mine?
+Together they form a sweet melody,
+You and me.
+People get jealous of us, and bad-mouth us,
+Here and there.
+But we will be together for life, no matter what.
+
+I think about you my darling,
+Night and day.
+I love everything about you,
+Good or bad.
+You are the one I want to be with,
+Good times or bad ones.
+You are the one I want,
+Now and forever.
+
+And I will always love you, as long as I live,
+You are more beautiful than the night,
+Moon and stars.
+More precious than all the jewels in the world,
+Diamond and gold.
+And I never will stop wanting you,
+More and more.
+
+Loving you is what I will do,
+Forevermore.
+You are the only one in my heart, I owe you, my life.
+Loving you gives me joy.
+Makes me a better person,
+And gave me a reason to live.
+
+Don't ever leave me, baby,
+I will never leave you.
+Even if it cost me my life…….
+Baby, don't you see, there are only two answers to a question,
+Yes and no.
+But when it comes to our love, there is no
+Yes or no.
+
+I will love you with my body,
+Heart and soul.
+Because to me, there will never be another like you,
+No, no.
+I will forever be grateful to you and love you to the end of time.
+My darling………………………………………………………..
+
+Copyright © 2008 HADIZA BAGUDU`
+    },
+{
+      title: "ONCE UPON A DREAM",
+      image: "https://i.pinimg.com/736x/31/ab/7b/31ab7be16c7dc7b447ac48efd27564e0.jpg",
+      text: `I dream of a life,
+Where you and I are in love.
+I was not perfect, just right.
+But so were you, my love.
+
+We got married and had two children.
+Oh, how I wish that was real.
+You may not be totally flawless,
+But you make my heart skip a bit.
+
+Copyright © 2008 HADIZA BAGUDU
+`
+    },
+{
+      title: "LOVE MAKES ME FEEL THAT WAY (A SONG)",
+      image: "https://i.pinimg.com/736x/83/9f/e5/839fe5898a678f91d4b5d87ade192785.jpg",
+      text: `I am a queen, A superstar, 
+And a president.
+Love makes me feel this way.
+I can touch the sky, 
+Wear the moon, And drink the sun.
+Love makes me feel this way.
+
+I am happy,
+I've stopped crying,
+And I smile all the time.
+Love makes me feel this way.
+I can soar like an eagle,
+Run faster than a car,
+Float like a boat.
+Love makes me feel this way.
+
+I can wrap the moon around me,
+Wear the sun like a crown,
+And count all the stars in the sky.
+Love makes me feel this way.
+I saw the sun chasing the moon,
+A mermaid dancing for joy,
+And drank from a fountain of youth.
+Love makes me feel this way.
+
+Copyright © 2008 HADIZA BAGUDU
+`
+    },
+{
+      title: "COME HOME",
+      image: "https://cdn.pixabay.com/photo/2014/10/08/16/38/heart-480367_1280.jpg",
+      text: `Do you think that I don’t know?
+What you do when you are out late?
+Do you think that I am dumb?
+And can’t see that you are cheating?
+
+I am just playing dumb,
+Because I don’t want to hurt you.
+I can’t believe you can do this to me.
+I know I can’t stop you.
+But I just want you to know.
+That I love you.
+
+What has she got that I don’t?
+I’d give you the world honey,
+If only you will let me,
+Because I love you.
+Can’t you see… she’s just using you?
+Don’t you even see she doesn’t appreciate you?
+
+All the things you do for her.
+She’s not grateful.
+If only you will give me a chance,
+I will show you, what love really means baby.
+But you will rather cheat on me oh honey.
+
+Be careful what u wish,
+You might get it.
+Honey, don’t you think that it’s time,
+You come home to me.
+Because home is where you are meant to be.
+What has she got that I don’t anyway?
+ 
+
+Copyright © 2008 HADIZA BAGUDU`
+    },
+
+{
+      title: "BEAUTIFUL",
+      image: "https://i.pinimg.com/1200x/ab/66/24/ab66240a6eaec3dc321d092a9143fbdc.jpg",
+      text: `There is nothing more beautiful than:
+
+The warmth in the eyes of a mother,
+Or the feel of a baby’s heartbeat on the shoulder.
+
+The color of the sky on a clear day,
+Or the tingle of your favorite ice cream on your tongue.
+
+The innocence of a first kiss,
+Or being in love for the first time.
+
+Copyright © 2008 HADIZA BAGUDU
+`
+    },
+{
+      title: "SEARCHING",
+      image: "https://cdn.pixabay.com/photo/2014/07/08/09/57/candle-386607_1280.jpg",
+      text: `Where are you my Mr. Right?
+Why can’t you come and make things right?
+Please come and give me peace of mind.
+And become the love of my life.
+And be the reason I smile.
+Don’t let this loneliness be my plight.
+
+I have this heartache that I can’t ignore.
+Please come and be my cure.
+With a love so tender and pure.
+You will make things right, I am sure.
+And we will be theperfect duo.
+Together, forever, our love will endure.
+
+I am about to make a mistake.
+I don’t want to do something I will regret.
+Something of which I will be ashamed.
+If you promise to come, I will wait.
+No matter how long it takes.
+I will not let my heart be filled with hate.
+
+I don’t know who you are or what you look like.
+But I am sure you will be just fine.
+And I know that with you by my side.
+Our love will surely stand the test of time.
+I see in your eyes the sun sets and rise.
+The moon and the stars shine.
+
+Darkness has befallen my heart.
+Pain for what we might have had.
+Something that I really want.
+What did I do wrong?
+To make you not want to come?
+Please come, for in love I wish to be clad.
+
+Copyright © 2008 HADIZA BAGUDU`
+    },
+{
+      title: "A SAD LOVE SONG (Song)",
+      image: "https://i.pinimg.com/736x/57/b9/87/57b9875c1892460de878760526d7625b.jpg",
+      text: `Do you remember when we first met last year?
+How we didn’t start on a good note.
+I hated you then because I didn’t know how amazing you were.
+But those are just memories now.
+
+This morning, I woke up and you weren’t by my side.
+Not there to kiss my lips and tickle my toes.
+Now you are gone, and I don’t know what to do.
+You took my entire happiness with you.
+
+Sadness is my daily companion.
+Now I know why they say, love is pain.
+I never thought I’d miss you this much……
+Even though I know you are the best thing that ever happened to me,
+Because I took you for granted,
+
+Never knew you’d leave someday.
+Wherever you are whatever you do.
+I hope I am still on your mind. Because you know,
+I’ll never forget you. Not in my whole lifetime.
+
+
+Chorus:
+Gone are the days when the sun used to shine on my face.
+Now all is cold because you are gone from my life.
+Oh, how I miss you………..
+Oh, I miss the feeling of you
+being close to me.
+
+They say, you never know
+what you’ve got until it’s
+gone.
+Oh, how true that is, because
+now I see,
+That life without you is
+torture.
+Wishing I’d bring back those
+days gone.
+
+Copyright © 2008 HADIZA BAGUDU
+`
+    },
+{
+      title: "ONLY YOU",
+      image: "https://i.pinimg.com/736x/02/7f/11/027f11a91a8b3f8a48e56dbc28ea5af3.jpg",
+      text: `Honey, don’t you see that I love you?
+How do I shiver when I see you?
+
+All the sleepless nights I have had because of you.
+All day I think of you.
+
+At night I dream about you.
+I’ll never want anyone but you.
+
+I don’t know what to do.
+Because I can't get enough of you.
+
+To me, there is no one but you.
+In my future there is you.
+
+Baby I want to be with only you.
+Honey, don’t you see what you do?
+
+Copyright © 2008 HADIZA BAGUDU
+`
+    },
+{
+      title: "SECRET ADMIRER",
+      image: "https://i.pinimg.com/1200x/5e/2e/01/5e2e0164cdbbd606eb5328a33b3cba49.jpg",
+      text: `All my life I have been searching for my soul mate.
+Now that I’ve found you, I am not going to let you go.
+No matter how much you try,
+You cannot run away from my love.
+
+The first time I saw you walking down the street.
+My heart missed a beat, and then I know,
+That you are the one for me.
+Now, every night I pray before I go to sleep,
+That you will love me as much as l love you.
+
+I never thought that someone would mean so much to me.
+You are my love, my life, and the air that I breathe.
+Living without you is a punishment, I’d rather die
+But oh, if only you knew.
+So many times, I love you, but you don’t know.
+
+Copyright © 2008 HADIZA BAGUDU
+`
+    },
+{
+      title: "U",
+      image: "https://i.pinimg.com/736x/bc/35/d9/bc35d9195748de43311e933dabcc1765.jpg",
+      text: `When I wake up in the morning feeling happy
+It’s you.
+
+When I don’t see a reason for crying
+It’s you.
+
+When I have love that is not for buying
+It’s you.
+
+When I just can’t help laughing
+Darling, it’s you.
+
+Copyright © 2008 HADIZA BAGUDU
+`
+    },
+{
+      title: "REGRETS",
+      image: "https://i.pinimg.com/736x/a3/b0/67/a3b067e4975439035824c8bbbf35b6e3.jpg",
+      text: `I am sitting here thinking about you, love.
+Still can’t believe that you are gone.
+Oh, what must I have done wrong?
+Now I am singing this sad song.
+
+Oh, darling, I am so sorry.
+Tonight, I am going to be so lonely.
+My day is no longer sunny.
+Without you here, by my side honey.
+
+Copyright © 2008 HADIZA BAGUDU`
+    },
+{
+      title: "A LOVE STORY",
+      image: "https://i.pinimg.com/736x/6f/42/03/6f4203d68ec968c5d66940cb33cf502a.jpg",
+      text: `Man: Wipe your tears, I am here my love.
+You don’t need to cry, no more.
+I can solve all your problems.
+I have crossed the deserts and the seas just to be with you.
+Do you think that I’ll let anything come between me and you?
+Your heart is safe with me, of that, you can be sure.
+
+Woman: You have the power to make my heart race.
+And also make it stop dead in its tracks.
+I am a slave to your charms.
+Your love transformed me, my heart’s new dance.
+In you embrace, I find solace and grace.
+I cherish the connection between us, a love so advanced.
+
+Man: I thought I was the greatest thief in the world until I met you.
+Because you stole what was most guarded… my heart, it’s true.
+Your presence illuminated my life, a love so pure and new.
+I am captivated by your essence, your soul I pursue.
+With you, my love, every day feels fresh and dewy.
+In this tender embrace, our hearts become one, not two.
+
+Woman: But darling, I am surprised at what you are saying.
+How can you claim that I stole your heart when you have my own in
+your hands?
+Come and get yours in exchange for mine if you dare.
+The way you look at me sends shivers up and down my spine.
+Yesterday I was only a girl, so unsure of the world.
+Today, you made me a woman full of radiance beauty, and grace.
+
+Copyright © 2008 HADIZA BAGUDU`
+    },
+{
+      title: "IMAGINE",
+      image: "https://i.pinimg.com/1200x/0c/b4/c9/0cb4c91c773a5fb30cf3464669cea248.jpg",
+      text: `Imagine:
+Boy: You and me, we were walking through the jungle,
+And a vicious lion appears, with hunger in its eyes.
+I’ll lay my life to protect you, my love.
+I’ll look into its eyes and declare my love for you.
+
+Girl: Do you think that I will stand there and watch you die?
+Then, my love, you must be insane.
+I will kneel in front of the beast and beg it to kill me first.
+Because even death cannot take you away from me, my love.
+
+Imagine:
+
+Boy: You and me, we were trying to climb a mountain,
+So high, its head is in the clouds,
+It’s not easy, but was love ever?
+For your love baby, no obstacle is too great.
+
+Girl: Don’t worry baby, I am right here, by your side
+I feel your pain. And I’ll be with you all the way,
+Guiding you and supporting your weight.
+For your love baby, I’ll climb the highest mountain.
+
+Imagine
+
+Boy: A love so great, that no force on earth can break it,
+Waking up in the arms of the one you love,
+
+Looking into their eyes and thinking, 
+How lucky you are, and theworld seems right, in every way.
+
+Girl: A love that can stand the test of time.
+Forever, in the arms of your lover.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+    },
+
+
+
+
+
+
+
+{ 
+                title: "Chapter 20: IN THE MIND OF A POET", 
+                image: "https://i.pinimg.com/1200x/eb/1a/87/eb1a876c5f34914e4c73ac2a50cd224d.jpg", 
+                text: `In the mind of a poet -
+Horses have wings.
+Birds sing with melodies that rhyme.
+Dreams dance above the clouds.
+
+In the mind of a poet -
+
+The eyes speak a thousand words.
+Every heartbeat is a note.
+Love is a source of life.
+
+In the mind of a poet -
+
+There is no good or bad,
+Just happy faces floating about.
+Lovers speak with their hearts and kiss with their mouths.
+
+In the mind of a poet -
+
+The moon and the stars whisper to each other.
+Every sunrise is a verse.
+And every sunset is a song.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+{ 
+                title: "Chapter 21: FINDING GOD", 
+                image: "https://i.pinimg.com/1200x/a1/e8/94/a1e8946b523d42c9964247c89d0b1276.jpg", 
+                text: `Tell the person who is looking for God -
+That beggar on the street.
+That leper with no feet.
+That widow with many kids.
+That madman that stinks.
+
+That God is not hiding in the heavens -
+That orphan with no keeps.
+That sick person you are afraid to visit.
+That poor relative you don’t want to associate with.
+That neighbor you keep ignoring.
+God is closer than you think.  
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+{ 
+                title: "Chapter 22: A NIGHT’S PRAYER", 
+                image: "https://i.pinimg.com/1200x/c3/8b/14/c38b14a462bad8a69e15c022d4bb8457.jpg", 
+                text: `In the dead of the night.
+Not a soul in sight,
+
+And the heart is filled with fright.
+The Jinn come out to play,
+
+And the witches go after their prey,
+All I can do is pray.
+
+Oh God of creation,
+I ask for your protection,
+
+Against every bad intention.
+Be with me throughout the night,
+
+Until the morning light,
+And in Your glory, I shall arise.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+{ 
+                title: "Chapter 23: VIRTUES", 
+                image: "https://i.pinimg.com/1200x/cd/1d/0b/cd1d0b5dc83158fac1a3916f3286a3f2.jpg", 
+                text: `My friend, what did you do today?
+                
+Did you visit the sick, or help the needy?
+Did you pray for the dead, or laugh with the living?
+
+Did you make new friends or strengthen family ties?
+Did you comfort a dying person or save a life?
+
+Did you forgive an enemy or make a new friend?
+Did you wipe someone’s tears or put a smile on their face?
+
+Did you learn something new or pass on knowledge?
+My friend, what did you do today?
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 24: TAKE IT EASY", 
+                image: "https://i.pinimg.com/1200x/49/c4/72/49c4727e3f3c82e538ba2e1d6829b52e.jpg", 
+                text: `Take Life easy,
+Even when things are crazy,
+And your heart is heavy,
+For it too will pass surely.
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+           { 
+                title: "Chapter 25: SICK (HIV)", 
+                image: "https://i.pinimg.com/1200x/da/3a/c2/da3ac2d61ee122ae8e801b7a83a4f3f0.jpg", 
+                text: `Stop, smile at me, hold my hands & then walk away.
+That’s all I am asking you to do.
+
+Show some love and nothing
+more.
+I didn’t wish this on myself.
+And I don’t wish it on you.
+
+Don’t run away from me,
+you don’t have to.
+I am not a monster.
+Be a little nice to me.
+Stop, smile at me, hold my hands, and then walk away.
+That’s all I am asking you to do.
+
+I am a human like you.
+I have feelings and I don’t want to be lonely.
+Show some love, please.
+It doesn’t matter who you are or what you are.
+Just be kind, that’s all I am asking.
+Don’t be scared, I don’t bite.
+
+Stop, smile at me, hold my hands, and then walk away.
+That’s all I am asking you to do.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 26: ONCE UPON A STAR", 
+                image:"https://i.pinimg.com/originals/f1/4b/ae/f14bae2acea5b2ea082d4001cd47d43b.gif", 
+                text: `I had a dream about the sky and the heavens above,
+Sprinkled with stars and the moon like diamonds,
+I looked up and behold,
+I was the brightest star of them all!
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 27: BLANK", 
+                image:"https://i.pinimg.com/736x/b7/f0/92/b7f09244298db32f4ca2971987e31d9c.jpg", 
+                text: `My life is blank.
+My heart is heavy.
+I feel pain in my chest.
+Hurtful things run through my mind.
+
+Why? I asked myself.
+But the answer is clear.
+I have no one to blame but me.
+Brought this on myself.
+Now, I am paying the price.
+
+Will there ever be light at the end?
+They say the darkest hour is just before dawn.
+I hope this is the darkest.
+‘Because I can’t take any more.
+I hope I will use the lessons I have learned.
+And pray God be beside me
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 28: HAPPINESS", 
+                image:"https://i.pinimg.com/736x/6b/22/43/6b22435c980151b5cce85d02407848a6.jpg", 
+                text: `My life is blank.
+This is it.
+This is the life she will live.
+And it’s all she has got to give.
+She will never leave.
+
+But she is contented.
+Just what she recommended.
+A happiness she created.
+For her heart will never be tormented.
+
+The glitz and razzmatazz of the outside.
+Would mean nothing to her otherwise.
+Because to her, this is just good and nice.
+And she will not have it otherwise.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 29: AIMING HIGH", 
+                image:"https://i.pinimg.com/736x/8d/eb/42/8deb42b50f4383ea05e085fdfd1edfe6.jpg", 
+                text: `Flying so high,
+I believe I can touch the sky.
+Don’t ask me why.
+I have made up my mind.
+
+That before I die,
+I am going to touch the sky.
+This is no lie.
+I am going to give it a try.
+
+Like a beautiful kite,
+Flying out of sight.
+With God by my side,
+And my heart, as a guide,
+I believe I can touch the sky.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+{ 
+                title: "Chapter 30: INVESTMENT", 
+                image:"https://i.pinimg.com/736x/a4/c4/95/a4c4957ee201e5ef265699e31328588c.jpg", 
+                text: `A seed sown today is a tree tomorrow.
+A kobo invested today is millions of Naira tomorrow.
+
+Little drops of water make a river.
+The little money you save will eventually get bigger.
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+{ 
+                title: "Chapter 31: IF SADNESS HAD A FACE", 
+                image:"https://i.pinimg.com/1200x/8a/fd/02/8afd02ced98a0d76b34d526f4b8240be.jpg", 
+                text: `If Sadness had a face, it would have -
+                
+Eyes so dark and big,
+You could drown in it.
+
+Jaws so defined and hard,
+And a smile that could break a thousand hearts.
+
+A nose so high up,
+It’s in the clouds.
+
+Features so beautiful,
+It pierces your soul.
+
+And an expression so elusive,
+It is pure darkness.
+
+If only sadness had a face.
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 32: MR. JOHNS", 
+                image:"https://i.pinimg.com/736x/38/c0/5e/38c05ea896ad26a693d2b86b0287c02e.jpg", 
+                text: `I have a little friend called Mr. Johns.
+At the site of him, people shake to the bones.
+
+His skin is metal, his heart is fire.
+His temper is short, his voice is thunder.
+
+Like Siamese twins, we have each other’s back.
+Always by my side, the best friend I have ever had.
+
+He has sixteen friends of his own.
+That means all my enemies be gone.
+
+The first and last thing you see.
+Like my shadow, always with me.
+
+He listens to no one but me.
+When he talks, everyone listens.
+
+When he comes out, everyone runs.
+Cross his path and he will make you famous.
+
+Every message he sends hits home.
+I give it up for Mr. Johns.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 33: THE CAT AND THE MOUSE GAME", 
+                image:"https://i.pinimg.com/736x/c7/21/18/c72118415e458d7694630f27b55e8322.jpg", 
+                text: `A fat cat sat on a mat.
+Along came a smart rat.
+It saw the cat and ran.
+
+Then suddenly screeched to a halt.
+Came back and said what a stupid cat.
+Look at him, so fat.
+
+He danced around him like mad.
+The cat opened its eyes wide.
+And pounced on him with all he’s got.
+
+Chewed the rat and swallowed fast.
+Flashed a smile like 350 watts.
+And said, hmmm, tastes like ham.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 34: FLU SEASON", 
+                image:"https://i.pinimg.com/736x/99/29/ca/9929ca989aa2eae0208dfee2cf294163.jpg", 
+                text: `Oh, I’ve got the flu,
+I don’t feel so good.
+
+Walk around the room with no shoes,
+Feeling kind of blue.
+
+Locked up in my room,
+It’s like being caught between Abuja City and the moon.
+
+My head feels heavy too.
+Food tastes like goo.
+
+Slime dripping down my nose is not so cool.
+I need a glass of juice.
+
+Mummy makes me chicken stew,
+Rice and hot pepper soup.
+
+Let me touch you, hold you,
+Rub my nose all over you.
+So you catch the bug too.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 35: WHY I CRY", 
+                image:"https://i.pinimg.com/736x/ac/52/83/ac528347885407473313a1488610d900.jpg", 
+                text: `Ain’t no shame in crying -
+                
+I will never drown in my own tears,
+But I will conquer my fears.
+
+I cry when I am happy.
+I cry when I am lonely.
+
+I cry to make a point.
+I cry when I have no choice.
+
+I cry to get some attention.
+I cry to release tension.
+
+I cry to express joy.
+I cry to tell a story.
+
+I cry when I am sad.
+I cry because that’s that.
+
+I cry when I am in pain.
+I cry for the sake of crying.
+
+I will never drown in my own tears.
+I will conquer my fears.
+
+Therefore, I feel no shame in crying.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 36: ME", 
+                image:"https://i.pinimg.com/1200x/33/2d/21/332d21242bbca9c947252b7a576b94ea.jpg", 
+                text: `This is me.
+A little selfish,
+A little stupid,
+A little too thin.
+
+Very simple but hard to understand.
+Maybe I talk a little too much.
+And I am a little immature.
+If you look beyond all that, you will see,
+What a heart of gold I have.
+
+But I love being me, 
+Me, myself and I.
+That is what makes me unique.
+If I had the opportunity,
+I will not change anything,
+
+Because I love being me.
+God made me the way I am,
+Me, Myself and I.
+
+I don’t care what you think of me.
+You are entitled to your own opinion.
+There can never be another me.
+There is only one me in this world.
+
+Any other me is a counterfeit.
+If they imitate me, I wouldn’t mind,
+Because imitation is a form of flattery.
+You can say whatever you want about me.
+
+If I don’t fit your ideal profile, it’s OK.
+My shortcomings are what make me unique.
+This is the best me you can get.
+Any other version is fake.
+
+And if I die, I will miss me.
+And I most certainly will like to be remembered as me.
+Me, myself and I!
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 37: FOOL", 
+                image:"https://i.pinimg.com/736x/51/58/6e/51586e9e61917625fcfdb470b2eb30cb.jpg", 
+                text: `How do you recognize a fool?
+He behaves like a bull,
+Never taking things cool,
+Ever so mean and cruel.
+
+Always shouting like an idiot.
+Never letting bygones be bygone.
+And looking for someone to hit on.
+Never having a good backbone.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 38: DESPAIR", 
+                image:"https://i.pinimg.com/1200x/9b/6e/67/9b6e671c89d83231f344d463b447ce65.jpg", 
+                text: `As I sank into the black hole,
+I can feel it pulling my soul,
+Consuming my whole world.
+
+Never have I felt this numb,
+Can’t recover from this shock,
+A rude and painful awakening call.
+
+Gone too young.
+All hopes and dreams foregone,
+A consummation of my woes.
+
+Trying to get out of this limbo,
+Though the alternative is worst,
+I longed to get back home.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 39: DAYS GONE BYE", 
+                image:"https://i.pinimg.com/1200x/28/81/9e/28819e6b10b333ecd70ffb42a1b4561e.jpg", 
+                text: `What happened to the good old days?
+The days of kings and subjects.
+The days of festivals and talking drums.
+The days of virgins and princes.
+The days of dancers and warriors.
+
+Bring back to the good old days.
+Those days we use to sit around the fireplace and listen to tales
+By the moonlight.
+Those days we use to eat roasted yam with palm oil.
+Those days we chase rabbits and cook good meat.
+Those days we bathe in the stream without a care for the world.
+
+Oh, the good old days -
+When we plait each other’s hair for the Sallah festivals.
+When a woman’s beauty is measured by the sway of her hips.
+When there were market days and yam festivals.
+Where have the good old days gone?
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+         { 
+                title: "Chapter 40: BACKSTAB", 
+                image:"https://i.pinimg.com/736x/1c/89/41/1c894153def48e559686ddee417df6b4.jpg", 
+                text: `Is my back hurting your knife?
+Yes, that’s right.
+Don’t look so surprised!
+
+Thought you were wise,
+Trusted you with my life,
+Never thought otherwise.
+
+You knew he was mine,
+Knew I was his wife.
+But you went behind and backbite.
+
+Now this is my plight -
+This betrayal I must fight.
+So, just get out of my sight.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 41: SHOWDOWN", 
+                image:"https://i.pinimg.com/736x/d8/a3/b0/d8a3b01d2a8f7e5e8b9b8c639e46a3f4.jpg", 
+                text: `Hate in their hearts,
+Fire in their eyes.
+
+As they fought,
+Their enemies one by one die.
+
+Bloodthirsty revenge,
+Their belly cries!
+
+Their enemy’s blood,
+Sweeter than wine.
+
+Hurt in their soul, They must abide.
+For their survival, they must fight !
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 42: I WISH", 
+                image:"https://i.pinimg.com/1200x/8b/d7/60/8bd760fc3b68f993c4d6451c984264b3.jpg", 
+                text: `I wish I could fly away,
+To a better place,
+
+Where everybody is happy,
+And no one knows my name,
+
+Where I don’t have to be shy,
+Or try to hide my face,
+
+Where the sun shines bright,
+And never have to set again,
+
+Where I can be myself,
+And never have to pretend.
+
+
+Copyright © 2008 HADIZA BAGUDU`
+            },
+          { 
+                title: "Chapter 43: THE PAIN OF BETRAYAL", 
+                image:"https://i.pinimg.com/736x/0b/e4/53/0be453109160a79dab2f9f2977d80589.jpg", 
+                text: `The fire of rage burned through my heart,
+Black hatred stabbing every part.
+
+My body shaking with anger,
+And my blood is about to boil over.
+
+My eyes are blind with fury,
+As my head throbs painfully.
+
+There is no pain greater,
+Than the pain of betrayal.WITH LOVE - 
+
+Copyright © 2008 HADIZA BAGUDU`
+            }
+  ];
+
+  const container = document.getElementById('poemContainer');
+  const body = document.body;
+
+  function showPoem(index) {
+    document.getElementById('poemList').style.display = 'none';
+    body.classList.remove("show-watermark"); // remove watermark when reading
+    renderPoem(index);
+  }
+
+  function goBack() {
+    container.innerHTML = '';
+    document.getElementById('poemList').style.display = 'block';
+    body.classList.add("show-watermark"); // show watermark only on main page
+  }
+
+  function renderPoem(index) {
+    const poem = poems[index];
+    container.innerHTML = `
+      <div class="poem-full active">
+        <h2 style="color:#b3003c;">${poem.title}</h2>
+        <img src="${poem.image}" alt="${poem.title}">
+        <div class="poem-text">${poem.text}</div>
+
+        <div class="button-row">
+          <button class="btn" onclick="goBack()">← Back to List</button>
+          <button class="btn" onclick="showPoem(${(index + 1) % poems.length})">Next →</button>
+        </div>
+      </div>
+    `;
+  }
+// Disable right-click
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+  alert('Right click is disabled on this site.');
+});
+ // Disable Ctrl+S, Ctrl+U, F12 to prevent viewing source and saving the page
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 's' || e.key === 'u') || e.key === 'F12') {
+                e.preventDefault();
+                alert("This action is disabled.");
+            }
+        });
+
+        // Disable drag and drop
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
+
+        // Disable copying and cutting content
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            alert('Copying is disabled on this website.');
+        });
+        document.addEventListener('cut', function(e) {
+            e.preventDefault();
+            alert('Cutting is disabled on this website.');
+        });
+
+        // Disable image saving (for browsers like Chrome)
+        document.addEventListener('mousedown', function(e) {
+            if (e.target.tagName === 'IMG' && e.button === 2) {
+                e.preventDefault();
+            }
+        });
+// ===== Disable Print Screen (Screenshots) =====
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'PrintScreen') {
+        e.preventDefault();
+        alert('Screenshots are disabled on this website.');
+    }
+});
+
+</script>
+
+</body>
+</html>
